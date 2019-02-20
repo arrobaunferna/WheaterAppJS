@@ -6,7 +6,7 @@ const Location = props => {
     const { city } = props;
 
     return (
-        <div>
+        <div className="locationCont">
             <h3>{ city }</h3>
         </div>
     );
