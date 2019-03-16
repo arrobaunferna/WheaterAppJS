@@ -5,7 +5,7 @@ import WeatherLocation from './WeatherLocation';
 
 const LocationList = ({ cities }) => (
     <div>
-        { cities.map(city => <WeatherLocation city={city} />) }
+        { cities.map((city, idx) => <WeatherLocation city={city} key={idx} />) }
     </div>
 );
 
