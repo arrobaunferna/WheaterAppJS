@@ -26,14 +26,9 @@ class WeatherLocation extends Component {
     }
     
     componentDidMount() {
-        console.log("componentDidMount");
         this.handleUpdateClick();
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate");
-    }
-    
     handleUpdateClick = () => {
         // Find data
         fetch(getUrlWeather( this.state.city ))
@@ -68,7 +63,7 @@ class WeatherLocation extends Component {
     }
 }
 
-WeatherLocation.PropTypes = {
+WeatherLocation.propTypes = {
     city: PropTypes.string.isRequired
 };
 export default WeatherLocation;

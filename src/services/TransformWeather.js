@@ -1,5 +1,26 @@
-const getWeatherState = weather_data => {
-    return 'sun';
+import STATE from '../constants/weather-state';
+
+const getWeatherState = weather => {
+    const { id } = weather;
+
+    if(id < 300) {
+        return STATE.thunder;
+    
+    } else if(id < 500) {
+        return STATE.drizzle;
+    
+    } else if(id < 600) {
+        return STATE.rain;
+    
+    } else if(id < 700) {
+        return STATE.snow;
+    
+    } else if(id === 800) {
+        return STATE.sun;
+    
+    } else {
+        return STATE.cloud;
+    }
 }
 
 const getTemp = (temp, from, to) => {
@@ -57,7 +78,7 @@ const transformWeather = weather_data => {
     const { name } = weather_data;        
     const { humidity, temp } = weather_data.main;
     const { speed } = weather_data.wind;
-    const weather_state = getWeatherState(weather_data);
+    const weather_state = getWeatherState(weather_data.weather[0]);
 
     // The temperature provided by the API is in degrees Kelvin, then we convert it to degrees Celsius.
     const data = {
