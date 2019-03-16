@@ -18,9 +18,10 @@ class WeatherLocation extends Component {
     constructor(props) {
         super(props);
 
-        const { city } = props;
+        const { city, country } = props.city;
         this.state = {
             city,
+            country,
             data: null
         }        
     }
@@ -31,7 +32,8 @@ class WeatherLocation extends Component {
 
     handleUpdateClick = () => {
         // Find data
-        fetch(getUrlWeather( this.state.city ))
+        const city = this.state.city + ',' + this.state.country;
+        fetch(getUrlWeather( city ))
         .then(res => res.json())
         .catch(error => console.error("Hola :) Error:", error))
         .then(response => {
@@ -43,7 +45,6 @@ class WeatherLocation extends Component {
                 const weather_info = transformWeather(response);
                 
                 this.setState({
-                    city: weather_info.city,
                     data: weather_info.data
                 });
             } catch(error) {
@@ -64,6 +65,6 @@ class WeatherLocation extends Component {
 }
 
 WeatherLocation.propTypes = {
-    city: PropTypes.string.isRequired
+    city: PropTypes.object.isRequired
 };
 export default WeatherLocation;
