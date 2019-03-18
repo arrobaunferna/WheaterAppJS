@@ -69,7 +69,7 @@ const getTemp = (temp, from, to) => {
         console.error(err);
 
     } finally {
-        return Number( result.toFixed(2) );
+        return Number( result.toFixed(0) );
     }
 
 };

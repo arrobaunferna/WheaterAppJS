@@ -1,10 +1,11 @@
 .weatherDataCont {
     background-color: rgba(200, 200, 200, .5);
     border-radius: 5px;
+    box-sizing: border-box;
     height: 100px;
     line-height: 100px;
-    width: 400px;
-    line-height: 100px;
+    padding: 5px;
+    width: 100%;
 }
 
 .weatherTemperatureCont {
@@ -14,7 +15,7 @@
 
 .temperature {
     color: #333;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
     padding-left: 20px;
 }
@@ -37,6 +38,7 @@
 
 .extraInfoText {
     color: #1535c5;
+    display: inline-block;
     font-size: 16px;
     font-weight: bold;
 }
