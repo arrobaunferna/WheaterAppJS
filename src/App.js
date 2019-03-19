@@ -10,6 +10,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import './App.css';
 
 import LocationList from './components/LocationList';
+import ForecastExtended from './components/ForecastExtended';
 
 const cities = [
     {city: "Barranquilla", country: "co"},
@@ -24,14 +25,33 @@ const cities = [
 ];
 
 class App extends Component {
+    constructor() {
+        super();
+        
+        this.state = {
+            forecast_city: null
+        }
+    }
+
     handleSelectedLocation = city => {
         console.log(`handleSelectedLocation`);
-        console.log(city);        
+        this.setState({
+            forecast_city: city
+        });
+    }
+
+    Forecast = () => {
+        if(this.state.forecast_city) {
+            return <ForecastExtended city={ this.state.forecast_city } />
+        
+        } else {
+            return <h3>Selecciona una ciudad...</h3>
+        }
     }
 
     render() {
         return (
-            <Grid>
+            <Grid fluid>
                 <Row>
                     <AppBar position='sticky'>
                         <Toolbar>
@@ -45,8 +65,10 @@ class App extends Component {
                     </Col>
 
                     <Col xs={12} sm={12} md={6}>
-                        <Paper elevation={4}>
-                            <div className="details"></div>
+                        <Paper zdepth={4}>
+                            <div className="details">
+                                { this.Forecast() }
+                            </div>
                         </Paper>
                     </Col>
                 </Row>

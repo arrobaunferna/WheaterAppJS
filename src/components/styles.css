@@ -8,3 +8,8 @@
         overflow: auto;
     }
 }
+
+.forecastTitle {
+    text-align: center;
+    padding: 15px 0;
+}
