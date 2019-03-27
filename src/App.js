@@ -34,7 +34,6 @@ class App extends Component {
     }
 
     handleSelectedLocation = city => {
-        console.log(`handleSelectedLocation`);
         this.setState({
             forecast_city: city
         });

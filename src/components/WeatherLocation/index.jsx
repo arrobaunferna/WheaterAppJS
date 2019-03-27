@@ -7,7 +7,7 @@ import WeatherData from './WeatherData';
 
 // Services
 import transformWeather from '../../services/TransformWeather';
-import getUrlWeather from '../../services/UrlWeatherByCity';
+import getUrl from '../../services/URLApi';
 
 // UI
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -33,7 +33,7 @@ class WeatherLocation extends Component {
     handleUpdateClick = () => {
         // Find data
         const city = this.state.city + ',' + this.state.country;
-        fetch(getUrlWeather( city ))
+        fetch(getUrl('weather', city ))
         .then(res => res.json())
         .catch(error => console.error("Hola :) Error:", error))
         .then(response => {
