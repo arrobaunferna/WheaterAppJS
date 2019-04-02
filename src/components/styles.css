@@ -1,11 +1,16 @@
 .locationList {
+    height: 85vh;
+    overflow: auto;
     margin-bottom: 20px;
+}
+
+.locationList:hover {
+    cursor: pointer;
 }
 
 @media(max-width: 64em) {
     .locationList {
-        max-height: 30vh;
-        overflow: auto;
+        max-height: 45vh;
     }
 }
 

@@ -12,16 +12,6 @@ import getUrl from '../services/URLApi';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './styles.css';
 
-const days = [
-    'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'
-];
-const data = {
-    temperature: 10,
-    humidity: 10,
-    weatherState: 'cloud',
-    wind: '10 m/s'
-};
-
 class ForecastExtended extends Component {
     constructor() {
         super();
@@ -30,30 +20,37 @@ class ForecastExtended extends Component {
     }
 
     componentDidMount() {
-        const { city } = this.props;
+        this.updateCity(this.props.city);
+    }
+
+    componentWillReceiveProps(nextProps) {        
+        if( nextProps.city !== this.props.city ) {
+            this.setState({ forecastData: null });
+            this.updateCity(nextProps.city);
+        }
+    }
+
+    updateCity = city => {
         const url_forecast = getUrl('forecast', city.city + ',' + city.country);
 
         fetch( url_forecast )
         .then(res => res.json())
         .catch(error => console.log(`Error :)\n${error}`))
         .then(response => {
-            console.log(response);
             const forecastData = transformForecast(response);
-            console.log(forecastData);
             this.setState({ forecastData });
         });
     }
 
-    renderForecastItemDays() {
-        return 'render items';
-        // return days.map(day => { 
-        //     return <ForecastItem 
-        //         key={day} 
-        //         weekDay={day} 
-        //         hour={10} 
-        //         data={data} 
-        //     />;
-        // });
+    renderForecastItemDays(forecastData) {
+        return forecastData.map(forecast => {
+            return <ForecastItem 
+                key={forecast.weekDay + forecast.hour} 
+                weekDay={forecast.weekDay} 
+                hour={forecast.hour} 
+                data={forecast.data.data} 
+            />;
+        });
     }
 
     render() {
@@ -62,7 +59,7 @@ class ForecastExtended extends Component {
         return (
             <div>
                 <h3 className="forecastTitle">Pronostico Extendido para { city.city }</h3>
-                { forecastData ? this.renderForecastItemDays() : <CircularProgress size={60} /> }
+                { forecastData ? this.renderForecastItemDays(forecastData) : <CircularProgress size={60} /> }
             </div>
         );
     }
