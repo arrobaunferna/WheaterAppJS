@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import LocationList from '../components/LocationList';
 
 // Actions
-import { setCity } from '../actions/';
+import { setSelectedCity } from '../actions/';
 
 class LocationListContainer extends Component {
     handleSelectedLocation = city => {
@@ -26,7 +26,7 @@ LocationListContainer.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-    setCity: value => dispatch(setCity(value))
+    setCity: value => dispatch(setSelectedCity(value))
 });
 
 export default connect(null, mapDispatchToProps)(LocationListContainer);

@@ -8,18 +8,25 @@ import ForecastExtended from '../components/ForecastExtended';
 
 class ForecastExtendedContainer extends Component {
     render() {
+        const { forecast_city, forecastData } = this.props;
+
         return (
-            this.props.forecast_city ? <ForecastExtended city={ this.props.forecast_city } /> : <h3>Selecciona una ciudad...</h3>
+            Object.keys(forecast_city).length ? <ForecastExtended city={forecast_city} forecastData={forecastData} /> : <h3>Selecciona una ciudad...</h3>
         );
     }
 }
 
 ForecastExtendedContainer.propTypes = {
-    forecast_city: PropTypes.object.isRequired
+    forecast_city: PropTypes.object.isRequired,
+    forecastData: PropTypes.array
 };
 
-const mapStateToProps = state => ({
-    forecast_city: state.city
-});
+const mapStateToProps = state => {
+    const city_key = `${state.city.city},${state.city.country}`;
+    return {
+        forecast_city: state.city,
+        forecastData: state.cities[city_key] && state.cities[city_key].forecastData
+    };
+};
 
 export default connect(mapStateToProps, null)(ForecastExtendedContainer);
