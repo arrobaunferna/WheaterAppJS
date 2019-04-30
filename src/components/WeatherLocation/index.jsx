@@ -7,30 +7,7 @@ import WeatherData from './WeatherData';
 
 // UI
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 import "./styles.css";
-/*
-// Find data
-        const city = this.state.city + ',' + this.state.country;
-        fetch(getUrl('weather', city ))
-        .then(res => res.json())
-        .catch(error => console.error("Hola :) Error:", error))
-        .then(response => {
-            try {
-                if(response.cod === "404") {
-                    throw new Error("Esta ciudad no existe!");
-                }
-
-                const weather_info = transformWeather(response);
-                
-                this.setState({
-                    data: weather_info.data
-                });
-            } catch(error) {
-                console.log(error);                
-            }            
-        });
-*/
 
 const WeatherLocation = ({ onWeatherLocationClick, city, data }) => (
     <div className="wheaterLocationCont" onClick={onWeatherLocationClick}>
