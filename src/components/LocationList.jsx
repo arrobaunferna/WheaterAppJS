@@ -12,11 +12,12 @@ const LocationList = ({ cities, onSelectedLocation }) => {
 
     return (
         <div className="locationList">{ 
-            cities.map((city, idx) => { 
+            cities.map(city => {                 
                 return <WeatherLocation 
-                    city={city} 
-                    key={idx}
-                    onWeatherLocationClick={() => handleWeatherLocationClick(city)} 
+                    city={city.city} 
+                    key={city.key}
+                    onWeatherLocationClick={() => handleWeatherLocationClick(city.city)}
+                    data={city.data}
                 />;
             })
         }</div>
